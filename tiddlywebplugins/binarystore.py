@@ -41,6 +41,10 @@ class Store(StorageInterface):
         return self.core_store.bag_get(bag)
 
     def bag_delete(self, bag):
+        try:
+            self.binary_store.bag_delete(bag)
+        except NoBagError:
+            pass
         return self.core_store.bag_delete(bag)
 
     def recipe_put(self, recipe):
