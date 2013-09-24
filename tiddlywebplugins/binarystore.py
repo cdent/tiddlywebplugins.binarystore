@@ -37,6 +37,35 @@ class Store(StorageInterface):
     def bag_put(self, bag):
         self.core_store.bag_put(bag)
 
+    def bag_get(self, bag):
+        return self.core_store.bag_get(bag)
+
+    def bag_delete(self, bag):
+        return self.core_store.bag_delete(bag)
+
+    def recipe_put(self, recipe):
+        self.core_store.recipe_put(recipe)
+
+    def recipe_get(self, recipe):
+        return self.core_store.recipe_get(recipe)
+
+    def recipe_delete(self, recipe):
+        return self.core_store.recipe_delete(recipe)
+
+    def user_put(self, user):
+        self.core_store.user_put(user)
+
+    def user_get(self, user):
+        return self.core_store.user_get(user)
+
+    def user_delete(self, user):
+        return self.core_store.user_delete(user)
+
+    def tiddler_delete(self, tiddler):
+        self.core_store.tiddler_delete(tiddler)
+        if binary_tiddler(tiddler):
+            self.binary_store.tiddler_delete(tiddler)
+
     def tiddler_put(self, tiddler):
         if binary_tiddler(tiddler):
             try:
@@ -53,3 +82,21 @@ class Store(StorageInterface):
             found_tiddler.__class__ = BinaryTiddler
             found_tiddler._text = None
         return found_tiddler
+
+    def list_recipes(self):
+        return self.core_store.list_recipes()
+
+    def list_bags(self):
+        return self.core_store.list_bags()
+
+    def list_users(self):
+        return self.core_store.list_users()
+
+    def list_bag_tiddlers(self, bag):
+        return self.core_store.list_bag_tiddlers(bag)
+
+    def list_tiddler_revisions(self, tiddler):
+        return self.core_store.list_tiddler_revisions(tiddler)
+
+    def search(self, search_query):
+        return self.core_store.search(search_query)
