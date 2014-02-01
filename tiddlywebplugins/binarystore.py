@@ -23,6 +23,10 @@ class BinaryTiddler(Tiddler):
             self._text = found_tiddler.text
         return self._text
 
+    @text.setter
+    def text(self, text):
+        self._text = text
+
 
 class Store(StorageInterface):
 
